@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "0ae64552-6494-4282-a8f9-65ad60787dc1",
+		"name": "Courier Tracking Application",
+		"description": "API collection for the Courier Tracking Application.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26575027"
+	},
+	"item": [
+		{
+			"name": "Courier",
+			"item": [
+				{
+					"name": "Log Location",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"time\": \"2025-11-30T15:39:57.565Z\",\n  \"courier\": \"3fa85f64-5717-4592-b3fc-2c963f66afa6\",\n  \"lat\": 40.9923307,\n  \"lng\": 29.1244229\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/courier/location",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"courier",
+								"location"
+							]
+						},
+						"description": "Updates the courier's location. If the courier enters a store's 100m radius, an entry is logged."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Total Distance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/courier/total-distance/{{courierId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"courier",
+								"total-distance",
+								"{{courierId}}"
+							]
+						},
+						"description": "Returns the total travel distance for a specific courier."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Couriers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/courier",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"courier"
+							]
+						},
+						"description": "Returns a list of all tracked couriers."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Store",
+			"item": [
+				{
+					"name": "Get All Stores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/store",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"store"
+							]
+						},
+						"description": "Returns a list of all stores."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Store By Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/store/{{storeName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"store",
+								"{{storeName}}"
+							]
+						},
+						"description": "Returns details of a specific store by name."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Courier Store Entry",
+			"item": [
+				{
+					"name": "Get Entries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/courier-store-entry?courier-id={{courierId}}&store-name={{storeName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"courier-store-entry"
+							],
+							"query": [
+								{
+									"key": "courier-id",
+									"value": "{{courierId}}"
+								},
+								{
+									"key": "store-name",
+									"value": "{{storeName}}"
+								}
+							]
+						},
+						"description": "Returns a history of all store entries."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:9050/api"
+		},
+		{
+			"key": "courierId",
+			"value": "3fa85f64-5717-4592-b3fc-2c963f66afa6"
+		},
+		{
+			"key": "storeName",
+			"value": "Caddebostan MMM Migros"
+		}
+	]
+}
